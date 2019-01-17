@@ -1,0 +1,80 @@
+{
+  "name": "@wix/{%projectName%}",
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "private": true,
+  "author": {
+    "name": "{%authorName%}",
+    "email": "{%authorEmail%}"
+  },
+  "scripts": {
+    "start": "yoshi start --no-test --entry-point=index-dev.js",
+    "e2e:open": "cypress open",
+    "start:e2e": "start-server-and-test start http://localhost:3000 e2e:open",
+    "precommit": "lint-staged",
+    "pretest": "yoshi build",
+    "test:e2e": "cypress run",
+    "test:component": "MATCH_ENV=component yoshi test --jest",
+    "test:server": "MATCH_ENV=server yoshi test --jest",
+    "test": "yoshi test --jest src test/server && start-server-and-test start http://localhost:3000 test:e2e",
+    "posttest": "yoshi lint",
+    "release": "yoshi release"
+  },
+  "dependencies": {
+    "axios": "~0.16.0",
+    "babel-runtime": "^6.26.0",
+    "express": "~4.15.0",
+    "i18next": "^11.6.0",
+    "prop-types": "~15.6.0",
+    "react": "15.6.1",
+    "react-dom": "15.6.1",
+    "react-i18next": "^7.11.0",
+    "@wix/wix-axios-config": "latest",
+    "@wix/wix-bootstrap-greynode": "latest",
+    "@wix/wix-bootstrap-hadron": "latest",
+    "@wix/wix-bootstrap-ng": "latest",
+    "@wix/wix-bootstrap-renderer": "latest",
+    "@wix/wix-express-csrf": "latest",
+    "@wix/wix-express-require-https": "latest"
+  },
+  "devDependencies": {
+    "cypress": "^3.1.4",
+    "react-test-renderer": "~15.6.0",
+    "enzyme": "~2.9.0",
+    "eslint-plugin-cypress": "^2.2.0",
+    "husky": "~0.14.0",
+    "lint-staged": "^7.2.2",
+    "jest-yoshi-preset": "^3.5.0",
+    "puppeteer": "^1.1.0",
+    "start-server-and-test": "^1.7.11",
+    "yoshi": "^3.0.0",
+    "yoshi-style-dependencies": "^3.0.0",
+    "@cypress/mocha-teamcity-reporter": "^1.0.0",
+    "@wix/wix-bootstrap-testkit": "latest",
+    "@wix/wix-config-emitter": "latest"
+  },
+  "lint-staged": {
+    "*.{js,scss,less}": "yoshi lint"
+  },
+  "jest": {
+    "preset": "jest-yoshi-preset"
+  },
+  "yoshi": {
+    "externals": {
+      "react": "React",
+      "react-dom": "ReactDOM"
+    },
+    "hmr": "auto"
+  },
+  "babel": {
+    "presets": [
+      "yoshi"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "yoshi",
+    "globals": {
+      "app": false
+    }
+  }
+}

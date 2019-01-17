@@ -1,6 +1,7 @@
 module.exports = [
   'fullstack',
   'fullstack-typescript',
+  'fullstack-cypress',
   'client',
   'client-typescript',
   'node-library',

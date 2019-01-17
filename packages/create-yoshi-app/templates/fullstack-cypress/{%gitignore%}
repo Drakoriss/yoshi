@@ -1,0 +1,14 @@
+node_modules
+dist
+target
+coverage
+typings
+maven
+.history
+.idea
+*.iml
+test/e2e/screenshots
+test/screenshots
+test/videos
+package-lock.json
+.yo-rc.json
